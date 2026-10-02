@@ -1,0 +1,14 @@
+# Secrets et environnement
+.env
+venv/
+.venv/
+
+# Python
+__pycache__/
+*.pyc
+
+# Base locale (mode debug)
+db/*.db
+db/*.db-shm
+db/*.db-wal
+db/*.sqlite*

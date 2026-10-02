@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Faire un don — cyberPink</title>
+  <meta name="description" content="cyberPink imagine, construit et relie des initiatives dans les domaines où la technologie devient réellement utile. Niamey, Niger.">
+  <link rel="icon" href="/assets/favicon.ico">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=Space+Grotesk:wght@400;500;600;700&display=swap">
+  <link rel="stylesheet" href="/css/base.css">
+  <link rel="stylesheet" href="/css/globals.css">
+  <link rel="stylesheet" href="/css/landing.css">
+</head>
+<body>
+  <div class="holding-shell">
+    <header class="site" data-site-header></header>
+
+    <main class="holding-main">
+      <section class="hero" style="padding: 64px 0 48px">
+        <div class="wrap">
+          <span class="eyebrow">Soutenir cyberPink</span>
+          <h1 style="font-size: clamp(30px, 4.4vw, 44px)">
+            Contribuez au développement de la nation.
+          </h1>
+          <p class="lead">
+            Vos dons financent le développement des produits, l'équipe locale et
+            l'infrastructure. Chaque contribution compte.
+          </p>
+        </div>
+      </section>
+
+      <section>
+        <div class="wrap">
+          <div class="section-head">
+            <span class="eyebrow">Comment faire un don</span>
+            <h2 style="margin-top: 14px">Envoyez ou déposez de l'argent</h2>
+            <p>
+              Transférez ou déposez sur le numéro ci-dessous via les opérateurs listés. L'envoi
+              d'argent <strong>et</strong> le dépôt d'argent sont tous deux acceptés.
+              Ensuite, envoyez-nous le reçu et un petit mot.
+            </p>
+          </div>
+
+          <div class="donate-box" style="max-width: 480px; margin-bottom: 32px">
+            <span class="op">Numéro unique</span>
+            <h3>Mobile Money</h3>
+            <div class="num">+227 86 06 90 20</div>
+            <p>
+              Via <strong>MyNita</strong>, <strong>Amanata</strong>, <strong>Wave</strong> et
+              <strong>Airtel Money</strong>
+            </p>
+          </div>
+
+          <div class="notice" style="margin-bottom: 36px">
+            Après votre transfert ou dépôt, merci d'envoyer le reçu (capture d'écran ou
+            photo) à
+            <a href="mailto:contact@cyberpink.com" style="color: var(--pink); text-decoration: underline">contact@cyberpink.com</a>
+            ou via le formulaire ci-dessous pour que nous puissions vous remercier.
+          </div>
+
+          <div class="section-head">
+            <span class="eyebrow">Confirmation</span>
+            <h2 style="margin-top: 14px; font-size: 22px">Dites-nous pourquoi</h2>
+          </div>
+
+          <div id="notice-succes" class="notice" style="border-left-color: #1a7a4c" hidden>
+            <p style="margin: 0; color: #1a7a4c">
+              Merci infiniment pour votre contribution et votre message. Nous avons bien reçu
+              votre intention de don. N'oubliez pas d'envoyer le reçu !
+            </p>
+          </div>
+
+          <form id="form-don" style="max-width: 560px">
+            <div class="field">
+              <label for="message">Votre message</label>
+              <textarea id="message" name="message" placeholder="Dites-vous pourquoi vous avez décidé de nous secourir !" required rows="4" maxlength="2000"></textarea>
+            </div>
+            <p id="contexte-produit" style="font-size: 13px; color: var(--slate); margin-bottom: 16px" hidden>
+              Contexte produit : <strong id="contexte-produit-nom"></strong>
+            </p>
+            <button id="bouton" type="submit" class="btn btn-primary" style="border: none; cursor: pointer">Envoyer mon message</button>
+            <p id="erreur" style="color: var(--pink); font-size: 14px; margin-top: 12px" hidden></p>
+          </form>
+        </div>
+      </section>
+
+      <hr class="divider">
+
+      <section>
+        <div class="section-head wrap">
+          <span class="eyebrow">Pourquoi donner</span>
+          <h2 style="margin-top: 14px">À quoi servent vos contributions</h2>
+        </div>
+        <div class="wrap grid-3" style="padding: 0">
+          <div class="card">
+            <span class="reg-code">01</span>
+            <h3 style="font-size: 17px">Développement produit</h3>
+            <p>
+              Financer les mises à jour et nouvelles fonctionnalités d'Antigramme, Elyon et
+              Damundjé.
+            </p>
+          </div>
+          <div class="card">
+            <span class="reg-code">02</span>
+            <h3 style="font-size: 17px">Équipe locale</h3>
+            <p>Soutenir les développeurs et l'équipe nigérienne derrière cyberPink.</p>
+          </div>
+          <div class="card">
+            <span class="reg-code">03</span>
+            <h3 style="font-size: 17px">Infrastructure</h3>
+            <p>
+              Couvrir les coûts techniques : hébergement, sécurité et outils de développement.
+            </p>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site" data-site-footer></footer>
+  </div>
+  <script type="module" src="/js/pages/dons.js"></script>
+</body>
+</html>

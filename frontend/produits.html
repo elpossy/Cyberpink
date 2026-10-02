@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Produits — cyberPink</title>
+  <meta name="description" content="cyberPink imagine, construit et relie des initiatives dans les domaines où la technologie devient réellement utile. Niamey, Niger.">
+  <link rel="icon" href="/assets/favicon.ico">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=Space+Grotesk:wght@400;500;600;700&display=swap">
+  <link rel="stylesheet" href="/css/base.css">
+  <link rel="stylesheet" href="/css/globals.css">
+  <link rel="stylesheet" href="/css/landing.css">
+</head>
+<body>
+  <div class="holding-shell">
+    <header class="site" data-site-header></header>
+
+    <main class="holding-main">
+      <section class="hero" style="padding: 64px 0 48px">
+        <div class="wrap">
+          <span class="eyebrow">Le registre des filiales</span>
+          <h1 style="font-size: clamp(30px, 4.4vw, 44px)">
+            Trois produits, une seule maison mère.
+          </h1>
+          <p class="lead">
+            Antigramme, Elyon et Damundjé sont nées à Niamey, sous un même toit : cyberPink.
+          </p>
+        </div>
+      </section>
+
+      <section>
+        <div class="wrap grid-3" id="liste-produits"></div>
+
+        <div class="wrap" id="zone-don" style="margin-top: 48px; text-align: center"></div>
+      </section>
+
+      <hr class="divider">
+
+      <section id="commentaires" style="scroll-margin-top: 80px">
+        <div class="wrap">
+          <div class="section-head">
+            <span class="eyebrow">Commentaires</span>
+            <h2 style="margin-top: 14px">Retours de la communauté</h2>
+            <p>
+              Partagez une recommandation, une idée ou un retour. Vous pouvez choisir une
+              visibilité publique ou privée.
+            </p>
+          </div>
+
+          <div id="commentaires-liste"></div>
+
+          <div style="margin-top: 36px">
+            <h3 style="font-size: 18px; margin-bottom: 12px">Publier un commentaire</h3>
+            <div id="commentaires-formulaire"></div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site" data-site-footer></footer>
+  </div>
+  <script type="module" src="/js/pages/produits.js"></script>
+</body>
+</html>

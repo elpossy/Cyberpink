@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Connexion — cyberPink</title>
+  <meta name="description" content="cyberPink imagine, construit et relie des initiatives dans les domaines où la technologie devient réellement utile. Niamey, Niger.">
+  <link rel="icon" href="/assets/favicon.ico">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=Space+Grotesk:wght@400;500;600;700&display=swap">
+  <link rel="stylesheet" href="/css/base.css">
+  <link rel="stylesheet" href="/css/globals.css">
+  <link rel="stylesheet" href="/css/landing.css">
+</head>
+<body>
+  <div class="holding-shell">
+    <header class="site" data-site-header></header>
+
+    <main class="holding-main">
+      <section style="padding: 64px 0">
+        <div class="wrap" style="max-width: 440px">
+          <span class="eyebrow">Compte</span>
+          <h1 style="font-size: 32px; margin-top: 12px">Connexion</h1>
+          <p style="color: var(--slate); margin-top: 10px; margin-bottom: 28px">
+            Connectez-vous avec votre e-mail et votre mot de passe.
+          </p>
+
+          <div id="notice-inscription" class="notice" style="margin-bottom: 24px; border-left-color: #1a7a4c" hidden>
+            <p style="margin: 0; color: #1a7a4c">
+              Compte créé avec succès. Vous pouvez maintenant vous connecter.
+            </p>
+          </div>
+
+          <form id="form-connexion">
+            <div class="field">
+              <label for="email">Adresse e-mail</label>
+              <input type="email" id="email" name="email" maxlength="254" required autocomplete="email">
+            </div>
+            <div class="field">
+              <label for="password">Mot de passe</label>
+              <input type="password" id="password" name="password" maxlength="128" required autocomplete="current-password">
+            </div>
+
+            <button id="bouton" type="submit" class="btn btn-primary" style="border: none; cursor: pointer; width: 100%; margin-top: 8px">Se connecter</button>
+            <p id="erreur" style="color: var(--pink); font-size: 14px; margin-top: 14px" hidden></p>
+          </form>
+
+          <p style="margin-top: 24px; font-size: 14px; color: var(--slate)">
+            Pas encore de compte ?
+            <a id="lien-inscription" href="/auth/register" style="color: var(--pink); text-decoration: underline">S'inscrire</a>
+          </p>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site" data-site-footer></footer>
+  </div>
+  <script type="module" src="/js/pages/login.js"></script>
+</body>
+</html>

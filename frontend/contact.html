@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Contact — cyberPink</title>
+  <meta name="description" content="cyberPink imagine, construit et relie des initiatives dans les domaines où la technologie devient réellement utile. Niamey, Niger.">
+  <link rel="icon" href="/assets/favicon.ico">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=Space+Grotesk:wght@400;500;600;700&display=swap">
+  <link rel="stylesheet" href="/css/base.css">
+  <link rel="stylesheet" href="/css/globals.css">
+  <link rel="stylesheet" href="/css/landing.css">
+</head>
+<body>
+  <div class="holding-shell">
+    <header class="site" data-site-header></header>
+
+    <main class="holding-main">
+      <section class="hero" style="padding: 64px 0 48px">
+        <div class="wrap">
+          <span class="eyebrow">Nous joindre</span>
+          <h1 style="font-size: clamp(30px, 4.4vw, 44px)">Contactez cyberPink</h1>
+          <p class="lead">
+            Une question, une suggestion, un partenariat ? Écrivez-nous. Nous lisons chaque message.
+          </p>
+        </div>
+      </section>
+
+      <section>
+        <div class="wrap grid-2">
+          <div>
+            <span class="eyebrow">Formulaire</span>
+            <h2 style="margin-top: 14px; font-size: 22px">Envoyer un message</h2>
+
+            <div id="notice-succes" class="notice" style="margin-top: 20px; border-left-color: #1a7a4c" hidden>
+              <p style="margin: 0; color: #1a7a4c">
+                Message envoyé avec succès. Nous vous répondrons dès que possible.
+              </p>
+            </div>
+
+            <form id="form-contact" class="contact-form" style="margin-top: 20px">
+            <div class="field">
+              <label for="name">Nom complet</label>
+              <input type="text" id="name" name="name" maxlength="100" required>
+            </div>
+            <div class="field">
+              <label for="email">Adresse e-mail</label>
+              <input type="email" id="email" name="email" maxlength="254" required>
+            </div>
+            <div class="field">
+              <label for="phone">Téléphone (optionnel)</label>
+              <input type="tel" id="phone" name="phone" maxlength="30" placeholder="+227 __ __ __ __">
+            </div>
+            <div class="field">
+              <label for="subject">Sujet</label>
+              <input type="text" id="subject" name="subject" maxlength="200" placeholder="Ex : Suggestion pour Elyon">
+            </div>
+              <div class="field">
+                <label for="message">Message</label>
+                <textarea id="message" name="message" maxlength="5000" required></textarea>
+              </div>
+              <button id="bouton" type="submit" class="btn btn-primary" style="border: none; cursor: pointer; width: fit-content">Envoyer le message</button>
+              <p id="erreur" style="color: var(--pink); font-size: 14px; margin-top: 12px" hidden></p>
+            </form>
+          </div>
+
+          <div>
+            <span class="eyebrow">Coordonnées</span>
+            <h2 style="margin-top: 14px; font-size: 22px">Autres moyens de nous joindre</h2>
+            <div style="margin-top: 20px; display: flex; flex-direction: column; gap: 22px">
+              <div class="stat">
+                <div class="label">E-mail</div>
+                <div class="num" style="font-size: 20px">contact@cyberpink.com</div>
+              </div>
+              <div class="stat">
+                <div class="label">Localisation</div>
+                <div class="num" style="font-size: 20px">Niamey, Niger</div>
+              </div>
+              <div class="stat">
+                <div class="label">Filiales</div>
+                <div class="num" style="font-size: 20px">Antigramme · Elyon · Damundjé</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site" data-site-footer></footer>
+  </div>
+  <script type="module" src="/js/pages/contact.js"></script>
+</body>
+</html>
