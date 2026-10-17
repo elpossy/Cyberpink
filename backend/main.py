@@ -1,7 +1,7 @@
 """Point d'entrée FastAPI : API cyberPink (JSON uniquement, /api/* + /api/health).
 
-Service indépendant du frontend (voir frontend/serve.py), relié uniquement par une
-URL HTTP (voir CORS_ORIGINS dans .env, et API_BASE_URL côté frontend).
+Service indépendant du frontend statique, relié uniquement par une URL HTTP
+(voir CORS_ORIGINS dans .env, et API_BASE_URL côté frontend).
 
 Lancement (depuis la racine du projet, celle qui contient backend/, frontend/ et db/) :
     uvicorn backend.main:app --reload
@@ -32,6 +32,12 @@ async def lifespan(_: FastAPI):
     db = get_db()
     db.init_schema()
     log.info("cyberPink démarré en mode %s (base : %s).", settings.mode, db.label)
+    if settings.env_file:
+        log.info("Configuration lue dans : %s", settings.env_file)
+    else:
+        log.info("Aucun fichier backend/.env : variables d'environnement uniquement.")
+    if not settings.is_production:
+        log.info("Fichier de la base SQLite : %s", settings.sqlite_path)
     yield
     db.close()
 
@@ -64,8 +70,8 @@ def create_app() -> FastAPI:
         allow_headers=["Content-Type", "Authorization"],
     )
 
-    # API uniquement : ce backend ne sert plus le frontend (service indépendant, voir
-    # frontend/serve.py). Toutes les routes sont sous /api/*, sauf /health (sonde).
+    # API uniquement : ce backend ne sert pas le frontend, qui est un service statique
+    # indépendant. Toutes les routes sont sous /api/*, sauf /health (sonde).
     for module in (auth, comments, contact, dons, health):
         app.include_router(module.router)
     return app

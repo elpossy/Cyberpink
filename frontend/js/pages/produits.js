@@ -19,7 +19,7 @@ function carteProduit(p) {
       <h3>${esc(p.name)}</h3>
       <p>${esc(p.longDesc)}</p>
       <div style="display: flex; gap: 12px; flex-wrap: wrap; margin-top: 8px">
-        <a href="/produits/${esc(p.slug)}" class="btn btn-primary" style="font-size: 13px; padding: 10px 16px">Voir la page</a>
+        <a href="/produit.html?product=${encodeURIComponent(p.slug)}" class="btn btn-primary" style="font-size: 13px; padding: 10px 16px">Voir la page</a>
         ${essayer}
       </div>
     </div>`;

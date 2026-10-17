@@ -1,6 +1,6 @@
-// Page de connexion (/auth/login).
+// Page de connexion (/auth/login.html).
 
-import { api, getCurrentUser, safeNextPath } from "../api.js";
+import { api, enregistrerToken, getCurrentUser, safeNextPath } from "../api.js";
 import { etatBouton } from "../dom.js";
 import { initLayout } from "../layout.js";
 
@@ -14,7 +14,7 @@ const formulaire = document.getElementById("form-connexion");
 const bouton = document.getElementById("bouton");
 const erreur = document.getElementById("erreur");
 
-document.getElementById("lien-inscription").href = `/auth/register?next=${encodeURIComponent(suite)}`;
+document.getElementById("lien-inscription").href = `/auth/register.html?next=${encodeURIComponent(suite)}`;
 if (inscritAvecSucces) document.getElementById("notice-inscription").hidden = false;
 
 // Déjà connecté : on renvoie directement vers la page demandée.
@@ -30,7 +30,7 @@ formulaire.addEventListener("submit", async (e) => {
   erreur.hidden = true;
 
   try {
-    await api("/auth/login", {
+    const resultat = await api("/auth/login", {
       method: "POST",
       body: {
         email: formulaire.elements.email.value,
@@ -38,6 +38,7 @@ formulaire.addEventListener("submit", async (e) => {
       },
       erreurParDefaut: "Identifiants incorrects",
     });
+    enregistrerToken(resultat.token);
     location.assign(suite);
   } catch (err) {
     erreur.textContent = err.message;

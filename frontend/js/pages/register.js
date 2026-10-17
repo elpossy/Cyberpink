@@ -12,7 +12,7 @@ const formulaire = document.getElementById("form-inscription");
 const bouton = document.getElementById("bouton");
 const erreur = document.getElementById("erreur");
 
-document.getElementById("lien-connexion").href = `/auth/login?next=${encodeURIComponent(suite)}`;
+document.getElementById("lien-connexion").href = `/auth/login.html?next=${encodeURIComponent(suite)}`;
 
 formulaire.addEventListener("submit", async (e) => {
   e.preventDefault();
@@ -32,7 +32,7 @@ formulaire.addEventListener("submit", async (e) => {
       erreurParDefaut: "Erreur lors de l'inscription",
     });
     // Après l'inscription : connexion, en conservant la destination.
-    location.assign(`/auth/login?registered=1&next=${encodeURIComponent(suite)}`);
+    location.assign(`/auth/login.html?registered=1&next=${encodeURIComponent(suite)}`);
   } catch (err) {
     erreur.textContent = err.message;
     erreur.hidden = false;

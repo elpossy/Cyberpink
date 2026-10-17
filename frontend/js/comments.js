@@ -96,9 +96,9 @@ export async function montrerFormulaireCommentaire(
           "p",
           { style: "margin: 0" },
           "Connectez-vous pour publier un commentaire et participer à la conversation. ",
-          lienConnexion(`/auth/login?next=${retour}`, "Se connecter"),
+          lienConnexion(`/auth/login.html?next=${retour}`, "Se connecter"),
           " ou ",
-          lienConnexion(`/auth/register?next=${retour}`, "créer un compte"),
+          lienConnexion(`/auth/register.html?next=${retour}`, "créer un compte"),
           "."
         )
       )
@@ -124,7 +124,6 @@ export async function montrerFormulaireCommentaire(
     placeholder: "Partagez une recommandation, une idée, un retour...",
     required: true,
     rows: "4",
-    maxlength: "2000",
   });
   const bouton = h(
     "button",

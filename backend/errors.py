@@ -9,6 +9,8 @@ from fastapi.exceptions import RequestValidationError
 from fastapi.responses import JSONResponse
 from starlette.exceptions import HTTPException as StarletteHTTPException
 
+from .config import get_settings
+
 log = logging.getLogger("cyberpink")
 
 MESSAGES_HTTP = {
@@ -24,6 +26,22 @@ class ApiError(Exception):
         super().__init__(message)
         self.status_code = status_code
         self.message = message
+
+
+def _en_tetes_cors(request: Request) -> dict[str, str]:
+    """En-têtes CORS à ajouter à la main sur une réponse 500.
+
+    Le gestionnaire d'`Exception` est exécuté par le middleware le plus extérieur de Starlette, donc
+    au-dessus du CORSMiddleware : sans cela, la réponse 500 n'a aucun en-tête CORS et le navigateur
+    affiche une « erreur réseau » opaque au lieu du message « Erreur serveur. ».
+    """
+    origines = get_settings().cors_origins
+    if "*" in origines:
+        return {"access-control-allow-origin": "*"}
+    origine = request.headers.get("origin")
+    if origine and origine in origines:
+        return {"access-control-allow-origin": origine, "vary": "Origin"}
+    return {}
 
 
 def register_error_handlers(app: FastAPI) -> None:
@@ -44,4 +62,4 @@ def register_error_handlers(app: FastAPI) -> None:
     @app.exception_handler(Exception)
     async def _inattendue(request: Request, exc: Exception):
         log.exception("Erreur non gérée sur %s %s", request.method, request.url.path)
-        return JSONResponse({"error": "Erreur serveur."}, status_code=500)
+        return JSONResponse({"error": "Erreur serveur."}, status_code=500, headers=_en_tetes_cors(request))

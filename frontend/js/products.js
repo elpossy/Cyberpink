@@ -1,5 +1,5 @@
 // Données des produits et des sujets de commentaires.
-// Les slugs doivent rester synchronisés avec PRODUITS dans frontend/serve.py.
+// Les slugs doivent rester synchronisés avec PRODUITS dans backend/routers/pages.py.
 
 export const products = [
   {
@@ -58,7 +58,7 @@ export function donateUrl(productName) {
   const message = productName
     ? `Je contribue au développement de ma nation en investissant dans ${productName}.`
     : "Je contribue au développement de ma nation en investissant dans cyberPink.";
-  return `/dons?message=${encodeURIComponent(message)}${
+  return `/dons.html?message=${encodeURIComponent(message)}${
     productName ? `&product=${encodeURIComponent(productName)}` : ""
   }`;
 }

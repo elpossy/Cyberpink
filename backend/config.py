@@ -8,6 +8,7 @@ Variable principale : APP_MODE
 
 from __future__ import annotations
 
+import logging
 import os
 from dataclasses import dataclass
 from functools import lru_cache
@@ -20,6 +21,8 @@ ROOT_DIR = Path(__file__).resolve().parent
 # Dossier de la base SQLite locale (mode debug) : db/, voisin de backend/ à la racine du projet
 # (dans le conteneur : /app/backend -> /app/db). Surchargeable avec la variable DB_DIR.
 DB_DIR = ROOT_DIR.parent / "db"
+
+log = logging.getLogger("cyberpink")
 
 MODES_VALIDES = ("debug", "production")
 SECRET_DE_DEV = "cyberpink-dev-secret-change-me"
@@ -37,6 +40,7 @@ class Settings:
     turso_token: str | None
     sqlite_path: Path
     cors_origins: tuple[str, ...]
+    env_file: Path | None = None  # fichier .env réellement lu (None : aucun)
 
     @property
     def is_production(self) -> bool:
@@ -49,6 +53,30 @@ def _dossier_db() -> Path:
     return Path(brut).expanduser().resolve() if brut else DB_DIR
 
 
+def _charger_env() -> Path | None:
+    """Charge backend/.env s'il existe et renvoie son chemin (None s'il n'y en a pas).
+
+    Les variables déjà présentes dans l'environnement (hébergeur) restent prioritaires.
+    """
+    chemin = ROOT_DIR / ".env"
+    if not chemin.is_file():
+        # Erreurs classiques : .env à la racine du projet, ou « .env.txt » créé par le Bloc-notes.
+        for autre in (ROOT_DIR.parent / ".env", ROOT_DIR / ".env.txt"):
+            if autre.is_file():
+                log.warning(
+                    "Le fichier %s existe mais n'est PAS lu : seul %s est pris en compte.", autre, chemin
+                )
+        return None
+    try:
+        load_dotenv(chemin, override=False)
+    except UnicodeDecodeError as exc:
+        raise ConfigError(
+            f"Le fichier {chemin} n'est pas encodé en UTF-8 (octet invalide en position {exc.start}). "
+            "Réenregistre-le en UTF-8 (Bloc-notes : Enregistrer sous > Encodage : UTF-8)."
+        ) from exc
+    return chemin
+
+
 def _lire(nom: str) -> str | None:
     """Lit une variable d'environnement (vide -> None)."""
     valeur = os.getenv(nom, "").strip()
@@ -57,8 +85,7 @@ def _lire(nom: str) -> str | None:
 
 @lru_cache
 def get_settings() -> Settings:
-    # Les variables déjà présentes dans l'environnement (hébergeur) restent prioritaires.
-    load_dotenv(ROOT_DIR / ".env", override=False)
+    env_file = _charger_env()
 
     mode = (_lire("APP_MODE") or "debug").lower()
     if mode not in MODES_VALIDES:
@@ -113,4 +140,5 @@ def get_settings() -> Settings:
         turso_token=turso_token,
         sqlite_path=_dossier_db() / "cyberpink.db",
         cors_origins=cors_origins,
+        env_file=env_file,
     )

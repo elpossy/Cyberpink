@@ -1,1 +1,1 @@
-"""Routeurs de l'API et des pages."""
+"""Routeurs de l'API (le backend ne sert aucune page HTML)."""

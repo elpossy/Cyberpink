@@ -1,4 +1,4 @@
-// Page d'un produit (/produits/antigramme, /produits/elyon, /produits/damundje).
+// Page d'un produit (/produit.html?product=antigramme, etc.).
 
 import { chargerCommentaires, montrerFormulaireCommentaire } from "../comments.js";
 import { esc } from "../dom.js";
@@ -7,18 +7,7 @@ import { donateClass, donateUrl, getProduct } from "../products.js";
 
 initLayout();
 
-// location.pathname n'est PAS décodé : « /produits/%65lyon » désigne le même produit que « /produits/elyon »
-// (le serveur, lui, décode avant de router). On décode donc, et on ignore un « / » encodé (%2F) en fin de chemin.
-function lireSlug() {
-  const dernier = location.pathname.split("/").filter(Boolean).pop() ?? "";
-  try {
-    return decodeURIComponent(dernier).replace(/^\/+|\/+$/g, "");
-  } catch {
-    return dernier; // séquence « % » invalide : on garde le texte brut (produit introuvable)
-  }
-}
-
-const slug = lireSlug();
+const slug = new URLSearchParams(location.search).get("product");
 const produit = getProduct(slug);
 const racine = document.getElementById("contenu-produit");
 
@@ -27,7 +16,7 @@ if (!produit) {
     <section class="hero" style="padding: 64px 0 48px"><div class="wrap">
       <span class="eyebrow">Erreur 404</span>
       <h1 style="font-size: clamp(30px, 4.4vw, 44px)">Produit introuvable</h1>
-      <div class="hero-cta"><a href="/produits" class="btn btn-primary">← Tous les produits</a></div>
+      <div class="hero-cta"><a href="/produits.html" class="btn btn-primary">← Tous les produits</a></div>
     </div></section>`;
 } else {
   document.title = `${produit.name} — cyberPink`;
@@ -47,7 +36,7 @@ if (!produit) {
         <div class="hero-cta">
           ${essayer("btn btn-primary")}
           ${don("ghost-dark")}
-          <a href="/produits" class="btn btn-ghost-dark">← Tous les produits</a>
+          <a href="/produits.html" class="btn btn-ghost-dark">← Tous les produits</a>
         </div>
       </div>
     </section>

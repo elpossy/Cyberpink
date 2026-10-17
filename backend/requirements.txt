@@ -24,6 +24,6 @@ PyYAML==6.0.3
 starlette==1.6.0
 typing-inspection==0.4.4
 typing_extensions==4.16.0
-uvloop==0.22.1
+uvloop==0.22.1; sys_platform != "win32"   # boucle d'événements rapide ; n'existe pas sous Windows
 watchfiles==1.2.0
 websockets==17.1
